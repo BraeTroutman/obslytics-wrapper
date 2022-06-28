@@ -1,0 +1,5 @@
+type: storeapi 
+endpoint: observability-thanos-receive.open-cluster-management-observability.svc.cluster.local:10901
+config:
+  tls_config:
+    insecure_skip_verify: true
