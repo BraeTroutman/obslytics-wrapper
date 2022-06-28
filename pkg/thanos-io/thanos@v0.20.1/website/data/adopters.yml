@@ -1,0 +1,134 @@
+---
+adopters:
+- name: Monzo
+  url: https://www.monzo.com
+  logo: monzo.png
+- name: UW
+  url: https://uw.co.uk/
+  logo: utilitywarehouse.png
+- name: Adform
+  url: https://site.adform.com
+  logo: Adform_logo_RGB.png
+- name: Seznam.cz
+  url: https://www.seznam.cz/
+  logo: seznam.png
+- name: tiket.com
+  url: https://www.tiket.com
+  logo: tiket.png
+- name: Uswitch
+  url: https://www.uswitch.com
+  logo: uswitch.png
+- name: Qonto
+  url: https://qonto.eu
+  logo: qonto.png
+- name: Meltwater
+  url: https://underthehood.meltwater.com
+  logo: meltwater.png
+- name: Jetstack
+  url: https://www.jetstack.io
+  logo: jetstack.png
+- name: ProSiebenSat.1
+  url: https://www.prosiebensat1.com/en/
+  logo: p7s1.png
+- name: Adobe
+  url: https://www.adobe.com
+  logo: Adobe_logo.png
+- name: Ebay
+  url: https://www.ebay.co.uk/
+  logo: ebay.png
+- name: Sauce Labs
+  url: https://saucelabs.com/
+  logo: saucelabs.png
+- name: XING
+  url: https://www.xing.com/
+  logo: xing.png
+- name: Untab
+  url: https://www.untab.io/
+  logo: untab.png
+- name: Hotstar
+  url: https://www.hotstar.com/
+  logo: hotstar.jpg
+- name: UBIO
+  url: https://ub.io/
+  logo: ubio.png
+- name: Softonic
+  url: https://www.softonic.com
+  logo: softonic.png
+- name: BlaBlaCar
+  url: https://www.blablacar.com
+  logo: blablacar.png
+- name: FREE NOW
+  url: https://free-now.com
+  logo: free-now.png
+- name: Amadeus
+  url: https://amadeus.com
+  logo: amadeus.png
+- name: Grofers
+  url: https://grofers.com
+  logo: grofers.png
+- name: Tencent
+  url: https://github.com/tkestack/tke
+  logo: tencent.png
+- name: VEXXHOST, Inc.
+  url: https://vexxhost.com
+  logo: vexxhost.png
+- name: World Wide Technology
+  url: https://www.wwt.com
+  logo: wwt.png
+- name: Banzai Cloud
+  url: https://banzaicloud.com/
+  logo: banzaicloud.png
+- name: Jurumani Solutions
+  url: https://www.jurumani.co.za/
+  logo: jurumanisolutions.png
+- name: Tangent Solutions
+  url: https://www.tangentsolutions.co.za/
+  logo: tangentsolutions.png
+- name: Toss
+  url: https://toss.im/en
+  logo: toss.png
+- name: Ozon
+  url: https://www.ozon.ru
+  logo: ozon.png
+- name: MALL Group
+  url: https://www.mallgroup.com/
+  logo: mallgroup.png
+- name: leboncoin
+  url: https://www.leboncoin.fr/
+  logo: leboncoin.png
+- name: Workfront
+  url: https://www.workfront.com/
+  logo: workfront.png
+- name: Cloud&Heat
+  url: https://cloudandheat.com
+  logo: cloudandheat.png
+- name: Hetzner
+  url: https://www.hetzner.com
+  logo: hetzner.png
+- name: FLAT ZONE s.r.o.
+  url: https://www.flatzone.cz
+  logo: flatzone.png
+- name: Beat
+  url: https://thebeat.co
+  logo: thebeat.png
+- name: Mobiuspace
+  url: https://www.mobiuspace.com
+  logo: mobiuspace.png
+- name: TiDB Cloud
+  url: https://tidbcloud.com
+  logo: tidbcloud.png
+- name: Talend
+  url: https://www.talend.com
+  logo: talend.png
+- name: NOS
+  url: https://www.nos.pt
+  logo: nos.png
+- name: Truphone
+  url: https://www.truphone.com
+  logo: truphone.png  
+- name: de Volksbank
+  url: https://www.devolksbank.nl/
+  logo: devolksbank.png  
+- name: Fullstaq
+  url: https://fullstaq.com/
+  logo: fullstaq.png  

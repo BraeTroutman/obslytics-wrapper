@@ -1,0 +1,7 @@
+type: storeapi
+endpoint: <endpoint_url>
+config: 
+  bearer_token: <token>
+  tls_config:
+    ssl_skip_verify: true
+

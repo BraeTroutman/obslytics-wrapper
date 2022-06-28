@@ -1,0 +1,10 @@
+type: PARQUET
+path: out.pq
+storage:
+  type: S3 
+  config:
+    bucket: <bucket_name>
+    endpoint: s3.<region>.amazonaws.com
+    access_key: <access_key>
+    secret_key: <secret_key>
+ 
