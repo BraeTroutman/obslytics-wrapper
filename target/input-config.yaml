@@ -1,5 +1,5 @@
-type: storeapi 
-endpoint: observability-thanos-receive.open-cluster-management-observability.svc.cluster.local:10901
+type: remoteread 
+endpoint: http://demo.robustperception.io:9090/api/v1/read
 config:
   tls_config:
     insecure_skip_verify: true
