@@ -1,7 +1,9 @@
 type: PARQUET
 path: $MATCH.pq
 storage:
-  type: FILESYSTEM 
+  type: S3
   config:
-    directory: /usr/src/io
-
+    endpoint: s3.us-east-1.amazonaws.com
+    bucket: btroutma-obslytics
+    access_key: $ACCESS
+    secret_key: $SECRET
