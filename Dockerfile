@@ -2,6 +2,8 @@ FROM ubuntu:latest AS prep
 
 WORKDIR /usr/src/app
 
+RUN apt update && apt install -y ca-certificates
+
 RUN mkdir /usr/src/io
 COPY run.sh ./
 COPY target /usr/src/io

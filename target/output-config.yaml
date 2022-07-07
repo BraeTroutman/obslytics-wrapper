@@ -1,10 +1,9 @@
 type: PARQUET
-path: obslytics-output.pq
+path: $MATCH.pq
 storage:
   type: S3
   config:
-    bucket: bucket-name
-    endpoint s3.us-east-1.amazonaws.com
-    access_key:
-    secret_key:   
-
+    endpoint: s3.us-east-1.amazonaws.com
+    bucket: btroutma-obslytics
+    access_key: $ACCESS
+    secret_key: $SECRET
