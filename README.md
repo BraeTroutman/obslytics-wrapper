@@ -18,7 +18,7 @@ obslytics-wrapper
 ## configuration
 
 ```
-target
+config
 ├── conf.env           -- (1)
 ├── input-config.yaml  -- (2)
 └── output-config.yaml -- (3)
