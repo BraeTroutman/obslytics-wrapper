@@ -1,6 +1,7 @@
 resolution: 30s
-min_time: "4 months ago"
-max_time: "now"
+min_time: 4 months ago
+max_time: now
+frequency_sec: 600
 matches:
   - cluster:cpu_usage_cores:sum
   - cpu_usage
