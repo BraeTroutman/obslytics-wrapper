@@ -1,0 +1,16 @@
+resolution: 30s
+min_time: "4 months ago"
+max_time: "now"
+input_config_file: input-config.yaml
+output_config_file: storage-config.yaml
+matches:
+  - cluster:cpu_usage_cores:sum
+  - cpu_usage
+  - mem_usage
+  - cluster:memory_usage_bytes:sum
+  - api_server_count
+  - cluster:apiserver_current_inflight_requests:sum:max_over_time:2m
+  - latency
+  - instance:etcd_network_peer_round_trip_time_seconds:histogram_quantile
+  - acm_managed_cluster_info
+
