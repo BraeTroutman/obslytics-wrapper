@@ -8,12 +8,12 @@ ADD pyscripts pyscripts
 RUN python -m pip install -r pyscripts/requirements.txt
 
 RUN mkdir /usr/src/io
-COPY run.sh ./
+COPY run.py ./
 COPY config /usr/src/io
 
-RUN chmod +x run.sh
+RUN chmod +x run.py
 
 COPY --from=braet/obslytics-wrapper /go/bin /usr/local/bin
 
-CMD ["./run.sh"]
+CMD ["./run.py"]
 
