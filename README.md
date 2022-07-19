@@ -12,7 +12,7 @@ obslytics-wrapper
 ├── pkg		    -- modified prometheus and thanos source code
 ├── pyscripts	    -- python3 dependencies and scripts for prepocessing go here
 ├── run.sh	    -- the entrypoint for the container, runs queries and python processing
-└── target	    -- contains configuration information for obslytics and run.sh
+└── config	    -- contains configuration information for obslytics and run.sh
 ```
 
 ## configuration
