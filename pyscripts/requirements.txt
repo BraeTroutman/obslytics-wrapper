@@ -1,4 +1,4 @@
 pyarrow==8.0.0
 numpy==1.22.4
 pandas==1.4.2
-pyyaml==5.3.1
+strictyaml==1.6.1
