@@ -9,7 +9,7 @@ RUN python -m pip install -r pyscripts/requirements.txt
 
 RUN mkdir /usr/src/io
 COPY run.sh ./
-COPY target /usr/src/io
+COPY config /usr/src/io
 
 RUN chmod +x run.sh
 
