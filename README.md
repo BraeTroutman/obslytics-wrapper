@@ -19,14 +19,16 @@ obslytics-wrapper
 
 ```
 config
-├── conf.env           -- (1)
+├── query.yaml         -- (1)
 ├── input-config.yaml  -- (2)
 └── output-config.yaml -- (3)
 ```
 
-1. conf.env: a list of environment variables to use when running the container. Each block of variables is in scope for one iteration of running the obslytics tool, and remains in scope unless over written in the next iteration. Separate each set of env vars by an empty newline, as run.sh parses this file based on empty lines, loading environment variables on full lines and running obslytics on empty ones. This way, you can change the value for $MATCH (the metric to query) or any other variables you'd like to mutate each iteration. run.sh will execute one query for every empty-line separated block in this file. Make sure there is an empty line at the end of the file, or the last query will not be run. NOTE your AWS access and secret keys must be added as environment vars in this file or in output-config.yaml in order for s3 output to work.
+All of these files are compatible to be loaded as a configmap into Openshift and the deployed container can access the configuration by mounting said configmap to the /usr/src/io directory in the pod deployment.
+
+1. query.yaml: contains config for the queries that will be run by obslytics against the Thanos or Prometheus endpoint. Specify query frequency, resolution (range of time in each query), query beginning time, query end time, as well as a list of metrics that should be pulled from the endpoint.
 
 2. input-config.yaml shouldn't need to be changed, just edits the api endpoint to be queried for metrics. This should be the cluster-internal thanos-recieve endpoint setup by the observability operator.
 
-3. output-config.yaml: a template file for output configuration passed to obslytics. Environment variables and bash globs/inline string replacment etc will be evaluated/replaced with their values when this file is loaded. Parameters in here can be changed to allow output on the local filesystem or to other object stores beyond s3.
+3. output-config.yaml: a template file for output configuration passed to obslytics. Environment variables in this file will be evaluated/replaced with their values when loaded. Parameters in here can be changed to allow output on the local filesystem or to other object stores beyond s3.
 
