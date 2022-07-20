@@ -1,5 +1,5 @@
 type: PARQUET
-path: ${MATCH//:/->}.pq
+path: 
 storage:
   type: S3
   config:
