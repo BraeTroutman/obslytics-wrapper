@@ -28,15 +28,15 @@ OUTPUT_CONFIG_SCHEMA = Map({
     })
 
 query = {}
-with open('/usr/src/io/query.yaml') as qfile:
-    query = load(qfile.read(), QUERY_SCHEMA)
-
 output_config = ""
-with open('/usr/src/io/output-config.yaml') as ofile:
-    output_config = os.path.expandvars(ofile.read())
-    output_config = load(output_config, OUTPUT_CONFIG_SCHEMA)
 
 while True:
+    with open('/usr/src/io/query.yaml') as qfile:
+        query = load(qfile.read(), QUERY_SCHEMA)
+    with open('/usr/src/io/output-config.yaml') as ofile:
+        output_config = os.path.expandvars(ofile.read())
+        output_config = load(output_config, OUTPUT_CONFIG_SCHEMA)
+
     min_time = dateparser.parse(query['min_time'].data).astimezone().isoformat()
     max_time = dateparser.parse(query['max_time'].data).astimezone().isoformat()
     for match in query['matches']:
