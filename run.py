@@ -42,12 +42,14 @@ while True:
     max_time = dateparser.parse(query['max_time'].data).astimezone().isoformat()
     for match in query['matches']:
         output_config['path'] = match.data.replace(':', '->') + '.pq'
-        sub.run(['obslytics', 'export',
-                  f'--match={match}',
-                  f'--resolution={query["resolution"]}',
-                  f'--min-time={min_time}',
-                  f'--max-time={max_time}',
-                  f'--input-config-file=/usr/src/io/input-config.yaml',
-                  f'--output-config="{output_config.as_yaml()}"'])
+        sub.run('obslytics export' \
+                f' --match={match}' \
+                f' --resolution={query["resolution"]}' \
+                f' --min-time={min_time}' \
+                f' --max-time={max_time}' \
+                f' --input-config-file=/usr/src/io/input-config.yaml' \
+                f' --output-config="{output_config.as_yaml()}"'
+                , shell=True
+                , capture_output=True)
     time.sleep(query['frequency_sec'].data)
 
