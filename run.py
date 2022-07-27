@@ -53,5 +53,37 @@ while True:
                 f' --output-config="{output_config.as_yaml()}"'
                 , shell=True
                 , capture_output=True)
+    s3_resource = boto3.resource('s3', aws_access_key_id=os.environ['ACCESS'], aws_secret_access_key=os.environ['SECRET'])
+    bucket = s3_resource.Bucket(output_config['storage']['config']['bucket'].data)
+    key_list = [obj.key for obj in filter(lambda x: x != 'metrics.pq', bucket.objects.all())]
+    metric_list = [item for item in map(lambda s: s.removesuffix('.pq'))]
+    drop_cols = ['_sample_end', '_min_time', '_max_time', '_count', '_min', '_max']
+
+    agg_table = []
+    i = 0
+    for key in key_list:
+        obj_handle = bucket.Object(key)
+        with io.BytesIO() as f:
+           obj_handle.download_fileobj(f)
+           f.seek(0)
+           metric = key.removesuffix('.pq')
+           table = pq.read_table(f).to_pandas().rename(columns={'_sum': metric}).drop(columns=drop_cols)
+           if i == 0:
+               agg_table = table.sort_values(by=['timestamp'])
+           else:
+               agg_table = pd.merge_asof(agg_table, table.sort_values(by=['timestamp']), on='timestamp', by='cluster', tolerance=pd.Timedelta('5s'))
+           i += 1
+    dup_cols_x = [item for item in filter(lambda x: '_x' in x, agg_table.columns)]
+    cols = [item for item in map(lambda x: x.removesuffix('_x'), dup_cols_x)]
+    dup_cols_y = [item for item in map(lambda x: x + '_y', cols)]
+    x_to_norm = {x: norm for (x, norm) in zip(dup_cols_x, cols)}
+    
+    agg_table = agg_table.rename(columns=x_to_norm).drop(columns=dup_cols_y)
+    agg_table = agg_table.loc[:,~agg_table.columns.duplicated()].copy()
+    
+    with io.BytesIO() as f:
+        agg_table.to_parquet(f)
+        bucket.upload_fileobj(f, 'metrics.pq')
+
     time.sleep(query['frequency_sec'].data)
 
