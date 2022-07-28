@@ -69,7 +69,7 @@ while True:
            obj_handle.download_fileobj(f)
            f.seek(0)
            metric = key.removesuffix('.pq')
-           table = pq.read_table(f).to_pandas().rename(columns={'_sum': metric}).drop(columns=drop_cols)
+           table = pq.read_table(f).to_pandas().rename(columns={'_sum': metric, '_sample_start': 'timestamp'}).drop(columns=drop_cols)
            if i == 0:
                agg_table = table.sort_values(by=['timestamp'])
            else:
