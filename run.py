@@ -85,6 +85,7 @@ while True:
     
     with io.BytesIO() as f:
         agg_table.to_parquet(f)
+        f.seek(0)
         bucket.upload_fileobj(f, 'metrics.pq')
 
     time.sleep(query['frequency_sec'].data)
