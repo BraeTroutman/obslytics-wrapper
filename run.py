@@ -1,7 +1,9 @@
 #!/usr/local/bin/python3
 
 from strictyaml import load, Map, Str, Int, Seq
+import pyarrow.parquet as pq
 import subprocess as sub
+import pandas as pd
 import dateparser
 import boto3
 import time
