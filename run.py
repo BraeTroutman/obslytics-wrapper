@@ -57,8 +57,8 @@ while True:
                 , capture_output=True)
     s3_resource = boto3.resource('s3', aws_access_key_id=os.environ['ACCESS'], aws_secret_access_key=os.environ['SECRET'])
     bucket = s3_resource.Bucket(output_config['storage']['config']['bucket'].data)
-    key_list = [obj.key for obj in filter(lambda x: x != 'metrics.pq', bucket.objects.all())]
-    metric_list = [item for item in map(lambda s: s.removesuffix('.pq'))]
+    key_list = [obj.key for obj in filter(lambda x: x.key != 'metrics.pq', bucket.objects.all())]
+    metric_list = [item for item in map(lambda s: s.removesuffix('.pq'), key_list)]
     drop_cols = ['_sample_end', '_min_time', '_max_time', '_count', '_min', '_max']
 
     agg_table = []
