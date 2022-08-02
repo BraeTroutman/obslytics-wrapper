@@ -1,5 +1,9 @@
 #!/usr/local/bin/python3
 
+#############
+## IMPORTS ##
+#############
+
 from strictyaml import load, Map, Str, Int, Seq
 import pyarrow.parquet as pq
 import subprocess as sub
@@ -9,8 +13,11 @@ import boto3
 import time
 import os
 import io
+import re
 
-## GLOBALS
+#############
+## GLOBALS ##
+#############
 
 # Internal data structure corresponding
 # to the content of query.yaml file
@@ -42,6 +49,18 @@ OUTPUT_CONFIG_SCHEMA = Map({
 query = {}
 # Holds parsed contents of output-config.yaml
 output_config = ""
+
+#######################
+## UTILITY FUNCTIONS ##
+#######################
+
+# convert snake case to camel case
+def snaketocamel(id: str) -> str:
+    return re.sub(r'_([a-zA-Z])', lambda m: m.expand(r'\1').upper(), id)
+
+##########
+## BODY ##
+##########
 
 while True:
     with open('/usr/src/io/query.yaml') as qfile:
@@ -96,8 +115,10 @@ while True:
     dup_cols_y = [item for item in map(lambda x: x + '_y', cols)]
     x_to_norm = {x: norm for (x, norm) in zip(dup_cols_x, cols)}
     agg_table = agg_table.rename(columns=x_to_norm).drop(columns=dup_cols_y)
+    agg_table.columns = agg_table.columns.to_series().apply(snaketocamel)
     agg_table = agg_table.loc[:,~agg_table.columns.duplicated()].copy()
-   
+    agg_table['timestamp'] = agg_table['timestamp'].astype(str)
+
     # write to s3
     with io.BytesIO() as f:
         agg_table.to_parquet(f)
