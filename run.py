@@ -90,8 +90,7 @@ while True:
     bucket = s3_resource.Bucket(output_config['storage']['config']['bucket'].data)
 
     # list of keys in bucket, metric names, and columns to drop from each df
-    key_list = [obj.key for obj in filter(lambda x: x.key != 'metrics.pq', bucket.objects.all())]
-    metric_list = [item for item in map(lambda s: s.removesuffix('.pq'), key_list)]
+    key_list = list(map(lambda m: m.replace(':', '->') + '.pq', query['matches']))
     drop_cols = ['_sample_end', '_min_time', '_max_time', '_count', '_min', '_max']
 
     agg_table = []
@@ -101,7 +100,7 @@ while True:
         with io.BytesIO() as f:
            obj_handle.download_fileobj(f)
            f.seek(0)
-           metric = key.removesuffix('.pq')
+           metric = snaketocamel(key.removesuffix('.pq'))
            table = pq.read_table(f).to_pandas().rename(columns={'_sum': metric, '_sample_start': 'timestamp'}).drop(columns=drop_cols)
            if i == 0:
                agg_table = table.sort_values(by=['timestamp'])
