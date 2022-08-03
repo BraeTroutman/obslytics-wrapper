@@ -90,7 +90,7 @@ while True:
     bucket = s3_resource.Bucket(output_config['storage']['config']['bucket'].data)
 
     # list of keys in bucket, metric names, and columns to drop from each df
-    key_list = list(map(lambda m: m.replace(':', '->') + '.pq', query['matches']))
+    key_list = list(map(lambda m: m.data.replace(':', '->') + '.pq', query['matches']))
     drop_cols = ['_sample_end', '_min_time', '_max_time', '_count', '_min', '_max']
 
     agg_table = []
